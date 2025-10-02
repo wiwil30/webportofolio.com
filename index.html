@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Pengaturan karakter encoding untuk mendukung semua karakter Unicode -->
+    <meta charset="UTF-8">
+
+    <!-- Pengaturan viewport untuk responsivitas pada perangkat mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+      Import Font Awesome untuk ikon sosial media dan navigasi
+      Versi 6.5.1 dipilih untuk fitur dan ikon terbaru 
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- 
+      Import AOS (Animate On Scroll) library
+      Digunakan untuk membuat animasi scroll yang menarik 
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Import file CSS custom untuk styling tambahan -->
+    
+    <style>
+      
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: url("background.jpg");
+  overflow: hidden;
+}
+
+nav {
+  width: 100%;
+  height: 10vh;
+  position: sticky;
+}
+
+.nav-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-container .logo {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: rgb(3, 162, 211);
+  text-shadow: 0 0 10px rgb(3, 162, 211);
+}
+
+.hamburg,
+.cancel {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: white;
+  display: none;
+  font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+}
+
+.nav-container .links {
+  display: flex;
+}
+
+.nav-container .links a {
+  font-size: 1.2rem;
+  color: white;
+  margin: 0 20px;
+  text-decoration: none;
+  font-weight: 550;
+  transition: 0.3s linear;
+}
+
+.nav-container .links a:hover {
+  color: rgb(3, 162, 211);
+  border-bottom: 2px solid rgb(3, 162, 211);
+}
+
+.nav-container .links .active {
+  color: rgb(3, 162, 211);
+  border-bottom: 2px solid rgb(3, 162, 211);
+}
+
+.dropdown {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  transform: translateY(-500px);
+  width: 100%;
+  height: auto;
+  backdrop-filter: blur(4px) brightness(40%);
+  box-shadow: 0 0 20px black;
+  transition: 0.2s linear;
+}
+
+.dropdown .links a {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  padding: 15px 0;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s linear;
+}
+
+.dropdown .links a:hover {
+  background-color: rgb(3, 162, 211);
+}
+
+section {
+  width: 100%;
+  height: 90vh;
+}
+
+.main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.main-container .content {
+  color: white;
+  width: 40%;
+  min-height: 100px;
+}
+
+
+.content h1 {
+  font-size: clamp(1rem, 1rem + 5vw, 1.8rem);
+}
+
+.content h1 span {
+  font-weight: 700;
+  text-shadow: 0 0 10px rgb(3, 162, 211);
+  color: rgb(3, 162, 211);
+}
+
+.content .typewriter {
+  font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
+  font-weight: 700;
+}
+
+.typewriter span {
+  color: rgb(3, 162, 211);
+  text-shadow: 0 0 10px rgb(3, 162, 211);
+}
+
+.content p {
+  font-size: clamp(0, 4rem, 0.2rem + 9vw, 1rem);
+  margin: 10px 0;
+}
+
+.social-links i {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  border: 0.2rem solid rgb(3, 162, 211);
+  border-radius: 50%;
+  color: rgb(3, 162, 211);
+  margin: 0 15px;
+  font-size: 1.5rem;
+  transition: 0.2s linear;
+}
+
+.social-links i:hover {
+  scale: 1.3;
+  filter: drop-shadow(0 0 10px rgb(3, 162, 211));
+  color: black;
+  background-color: rgb(3, 162, 211);
+  -webkit-filter: drop-shadow(0 0 10pxrgb(3, 162, 211));
+}
+
+.content button {
+  width: 50%;
+  height: 6vh;
+  margin: 30px;
+  background-color: rgb(2, 98, 153);
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 120%;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: 0.2s linear;
+}
+
+.content button:hover {
+  scale: 1.1;
+  color: rgb(3, 162, 211);
+  border: 2px solid rgb(3, 162, 211);
+  background-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 0 40px 5px rgb(3, 162, 211);
+}
+
+.main-container .image {
+  width: 50vh;
+  height: 70vh;
+  border-radius: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgb(3, 162, 211);
+}
+
+.main-container .image img {
+  width: 100%;
+  height: 100%;
+}
+
+.main-container .image:hover {
+  animation: animate 1.5s ease-in-out infinite;
+  -webkit-animation: animate 1.5s ease-in-out infinite;
+}
+
+@keyframes animate {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.05;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@media (max-width: 884px) {
+  nav .logo {
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    font-size: 1.5rem;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .nav-container .links {
+    display: none;
+  }
+
+  .hamburg,
+  .cancel {
+    display: block;
+  }
+
+  .main-container .content {
+    width: 80%;
+  }
+  .social-links i {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+  }
+
+  .main-container .image {
+    z-index: -1;
+    width: 50%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 440px) {
+  .main-container .image {
+    width: 60%;
+    height: 30%;
+  }
+
+  .main-container .content {
+    width: 80%;
+  }
+
+  .main-container button {
+    margin-top: 15px;
+  }
+}
+
+
+    </style>
+    <title>Wildan Pratiwi</title>
+</head>
+
+<body>
+
+    <!-- 
+      Navigation Section
+      - Menggunakan sistem grid untuk layout
+      - Includes logo dan menu navigasi
+      - Responsive dengan hamburger menu untuk mobile 
+    -->
+    <nav>
+        <div class="nav-container">
+
+            <!-- 
+              Logo dengan animasi zoom-in
+              data-aos-duration: 1500ms untuk animasi yang smooth 
+            -->
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Wildan <span>Pratiwi</span>
+            </div>
+
+            <!-- 
+              Navigation Links
+              - Menggunakan fade-up animation dengan delays bertingkat
+              - Active class untuk halaman yang sedang aktif 
+            -->
+            <div class="links">
+                <div class="link active" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a
+                        href="index.html">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a
+                        href="about.html">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a
+                        href="skill.html">Skills</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a
+                        href="contact.html">Contact</a></div>
+            </div>
+        </div>
+
+        <!-- 
+          Hamburger Menu Icon
+          - Muncul pada tampilan mobile
+          - Menggunakan Font Awesome icon
+          - onClick handler untuk membuka menu 
+        -->
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+
+        <!-- 
+          Dropdown Menu untuk Mobile
+          - Berisi link navigasi yang sama
+          - Muncul ketika hamburger menu diklik
+          - Includes tombol close (x) 
+        -->
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skill.html">Skills</a>
+                <a href="service.html">Service</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 
+      Main Content Section
+      - Menggunakan grid untuk layout dua kolom
+      - Includes teks intro dan gambar profil 
+    -->
+    <section>
+        <div class="main-container">
+            <!-- 
+              Content Container
+              - Berisi heading, typewriter effect, dan social links
+              - Setiap elemen memiliki animasi AOS yang berbeda 
+            -->
+            <div class="content">
+                <!-- Heading dengan fade-left animation -->
+                <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">Hey I'm <span>Wildan</span>
+                </h1>
+
+                <!-- 
+                  Typewriter Effect
+                  - Menggunakan JavaScript untuk animasi ketik
+                  - Fade-right animation untuk container 
+                -->
+                <div data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900" class="typewriter">I'm a <span
+                        class="typewriter-text"></span><label for="">|</label></div>
+
+                <!-- Paragraf deskripsi dengan flip-down animation -->
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">Saya adalah lulusan Sistem Informasi dari Universitas Kuningan dengan ketertarikan di bidang pengembangan web, administrasi, dan analisis data. 
+                  Selama kuliah, saya aktif mengikuti berbagai kegiatan praktis seperti magang, proyek sistem informasi, serta pengabdian masyarakat yang mengasah kemampuan teknis dan soft skill saya.
+                  Saya memiliki pengalaman mengembangkan aplikasi web berbasis PHP dan JavaScript, serta melakukan analisis data pelanggan menggunakan model RFM dan algoritma K-Means Clustering. 
+                  Saya juga terbiasa dengan pengelolaan data, dokumentasi, serta penggunaan perangkat lunak seperti Microsoft Office dan tools desain seperti Canva.
+                  Saya siap berkontribusi dalam dunia kerja, baik di bidang teknologi, administrasi, maupun data analis.</p>
+
+                <!-- 
+                  Social Media Links
+                  - Menggunakan Font Awesome icons
+                  - Fade-up animation dengan delays bertingkat 
+                -->
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/wildan-pratiwi-8533b4342/"data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://www.instagram.com/wllldn_p/" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500"><i
+                            class="fa-brands fa-instagram"></i></a>
+                </div>
+
+                <!-- 
+                  Download CV Button
+                  - Zoom-out animation dengan delay terpanjang
+                  - Styling didefinisikan di CSS 
+                -->
+                <div class="btn" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1800">
+                    <button>Download CV</button>
+                </div>
+            </div>
+
+            <!-- 
+              Image Container
+              - Menggunakan zoom-in animation
+              - Durasi lebih panjang (3000ms) untuk efek dramatic 
+            -->
+            <div class="image" data-aos="zoom-in" data-aos-duration="3000">
+                <img src="Aku.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      Script Imports
+      - AOS library untuk animasi
+      - Custom JavaScript untuk fungsionalitas tambahan 
+    -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS dengan offset 0 untuk trigger tepat waktu
+        AOS.init({ offset: 0, });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+<!-- Subscrbe YouTube Tamzidan Mahdiyin  -->
